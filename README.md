@@ -12,13 +12,13 @@ This project provides a real-time monitoring solution for GMX V2 isolated GM poo
 
 ### 📈 Key Metrics & Why They matters
   #### Open Interest (OI): Total value of active, outstanding bets (Longs + Shorts).
-  Why it matters: Risk Exposure: High OI means high volatility. If BTC moves 10%, a $10M OI means $1M is shifting in/out of the pool.
+  Risk Exposure: High OI means high volatility. If BTC moves 10%, a $10M OI means $1M is shifting in/out of the pool.
   #### Cumulative PnL: The historical "Scoreboard" of trader profits vs. losses.
-  Why it matters: Pool Growth: Negative = House wins (Pool grows). Positive = Traders win (Pool shrinks).
+  Pool Growth: Negative = House wins (Pool grows). Positive = Traders win (Pool shrinks).
   #### Solvency Ratio: The "Safety Buffer" ($Total Assets \div Total Trader Debt$).
-  Why it matters: Survival: A ratio of 10.0 means for every $1 traders win, $10 is in the vault. A ratio near 1.0 is a "Red Alert.
+  Survival: A ratio of 10.0 means for every $1 traders win, $10 is in the vault. A ratio near 1.0 is a "Red Alert.
   #### Market Skew: Directional imbalance between Longs and Shorts.
-  Why it matters: Exposure: If 90% are Long and BTC moons, the House loses. A 50/50 skew is the goal for "Delta-Neutral" stability.
+  Exposure: If 90% are Long and BTC moons, the House loses. A 50/50 skew is the goal for "Delta-Neutral" stability.
 
 ### 🛠️ Technical Implementation (DuneSQL)
 This project is built using the DuneSQL framework, leveraging advanced window functions to reconstruct the historical state of the protocol from event logs.
