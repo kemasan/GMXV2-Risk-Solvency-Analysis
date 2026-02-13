@@ -6,7 +6,7 @@ DuneSQL-driven framework for real-time GMX V2 risk management by tracking OI, So
 ### 🎯 Project Overview
 In GMX V2, Liquidity Providers (LPs) act as the "House." They provide the collateral that traders use to gamble on price movements. If traders win too much, the LPs lose money. If the market becomes too one-sided, the pool faces "Imbalance Risk."
 
-### The Business Question: "What is the current risk profile of our liquidity pools, and do we have enough collateral to remain solvent if traders win big?"
+### The Business Question: "What is the current risk profile of liquidity pools, and does the DEX have enough collateral to remain solvent if traders win big?"
 
 This project provides a real-time monitoring solution for GMX V2 isolated GM pools, allowing stakeholders to identify market anomalies and capital efficiency at a glance.
 
