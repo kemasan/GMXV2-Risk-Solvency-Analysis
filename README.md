@@ -22,3 +22,11 @@ This project provides a real-time monitoring solution for GMX V2 isolated GM poo
 
 ### 🛠️ Technical Implementation (DuneSQL)
 This project is built using the DuneSQL framework, leveraging advanced window functions to reconstruct the historical state of the protocol from event logs.
+
+
+### 📊 Why the Solvency Ratio matters for GMX V2
+The Solvency Ratio is the ultimate indicator of whether the Liquidity Providers are at risk of a "run on the bank." In GMX V2, the isolated pool design means that if one pool (like DOGE/USD) becomes insolvent, it does not affect the others, making this metric vital for choosing which pools to provide liquidity for.
+
+[GMX V2 Open Interest and Pool Value relationship](https://www.youtube.com/watch?v=6PEn6iEuFGA)
+
+This video explains how GMX V2 manages the relationship between pool collateral and open interest limits, which is the foundation of the solvency ratio calculated in this project.
