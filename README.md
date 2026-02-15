@@ -13,37 +13,24 @@ The result is a real-time system that shows whether liquidity pools can stay sol
 
 ### 📈 Key Metrics & Why They matters
   #### MARKET ACTIVITY
-  _Open Interest (OI):_ Total value of active, outstanding bets (Longs + Shorts).                              
-  High OI amplifies volatility and liquidation risk.                
-  
-  _Stress Solvency Ratio:_ Pool Liquidity ÷ (Net Exposure × Shock).                   
-  Simulates losses under price shocks (5%, 10%, 20%)           
-  
-  _Market Skew:_ Directional imbalance between Longs and Shorts.                   
-  Strong skew increases directional risk.                   
-  
-  _Pool Liquidity:_ Total collateral backing each market.                
-  Determines how much loss the pool can absorb.                   
+  _Open Interest (OI):_ Total value of active, outstanding bets (Longs + Shorts). High OI amplifies volatility and liquidation risk.                
+  _Stress Solvency Ratio:_ Pool Liquidity ÷ (Net Exposure × Shock). Simulates losses under price shocks (5%, 10%, 20%)           
+  _Market Skew:_ Directional imbalance between Longs and Shorts. Strong skew increases directional risk.                   
+  _Pool Liquidity:_ Total collateral backing each market. Determines how much loss the pool can absorb.                   
 
   #### PROFITABILITY
-  _Rolling Trader Wins (7D):_ 7-day sum of positive realized PnL.               
-  Measures recent pressure on LP capital.
+  _Rolling Trader Wins (7D):_ 7-day sum of positive realized PnL. Measures recent pressure on LP capital.
   
-  _Liquidity vs. Trader Wins:_ Pool Liquidity ÷ 7D Trader Wins.               
-  Shows whether recent profits are sustainable.                
+  _Liquidity vs. Trader Wins:_ Pool Liquidity ÷ 7D Trader Wins. Shows whether recent profits are sustainable.                
 
   #### Risk & Solvency              
-  _Stress Solvency Ratio:_ Pool Liquidity ÷ (Net Exposure × Shock)                 
-  Simulates losses under price shocks (5%, 10%, 20%).                  
+  _Stress Solvency Ratio:_ Pool Liquidity ÷ (Net Exposure × Shock). Simulates losses under price shocks (5%, 10%, 20%).                  
   
-  _Stress Liability:_ Estimated loss under simulated shock.                
-  Quantifies downside risk in USD terms.                
+  _Stress Liability:_ Estimated loss under simulated shock. Quantifies downside risk in USD terms.                
   
-  _Risk Regime:_ Classification based on solvency (High Risk, Watchlist, Healthy, No Exposure).            
-  Makes risk visible at a glance.                
+  _Risk Regime:_ Classification based on solvency (High Risk, Watchlist, Healthy, No Exposure). Makes risk visible at a glance.                
   
-  _System-Wide OI at Risk:_ % of total OI in insolvent markets.                   
-  Measures protocol-level tail risk.                     
+  _System-Wide OI at Risk:_ % of total OI in insolvent markets. Measures protocol-level tail risk.                     
 
 ### 🛠️ Technical Implementation (DuneSQL)
 This project is built in DuneSQL using GMX V2 on-chain event tables. The main goal is to reconstruct daily market state (OI, liquidity, stress metrics) from raw updates.
