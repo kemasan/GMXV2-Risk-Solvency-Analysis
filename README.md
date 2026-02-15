@@ -13,13 +13,13 @@ The result is a real-time system that shows whether liquidity pools can stay sol
 
 ### 📈 Key Metrics & Why They matters
   #### MARKET ACTIVITY
-  #### Open Interest (OI): Total value of active, outstanding bets (Longs + Shorts).
+  _Open Interest (OI):_ Total value of active, outstanding bets (Longs + Shorts).                 
   High OI amplifies volatility and liquidation risk.
-  #### Stress Solvency Ratio: Pool Liquidity ÷ (Net Exposure × Shock).
+  _Stress Solvency Ratio:_ Pool Liquidity ÷ (Net Exposure × Shock).
   Simulates losses under price shocks (5%, 10%, 20%)
-  #### Market Skew: Directional imbalance between Longs and Shorts.
+  _Market Skew:_ Directional imbalance between Longs and Shorts.
   Strong skew increases directional risk.
-  #### Pool Liquidity: Total collateral backing each market.
+  _Pool Liquidity:_ Total collateral backing each market.
   Determines how much loss the pool can absorb.
 
   #### PROFITABILITY
