@@ -41,39 +41,39 @@ The result is a real-time system that shows whether liquidity pools can stay sol
 ### 🛠️ Technical Implementation (DuneSQL)
 This project is built in DuneSQL using GMX V2 on-chain event tables. The main goal is to reconstruct daily market state (OI, liquidity, stress metrics) from raw updates.
 #### Joins (to connect the data correctly)  
-Used for:
-    - Join Open Interest events to market metadata (markets_data) to get market_name, long_token, short_token.
-    - Join reconstructed OI state with reconstructed pool liquidity state on: day + chain + market
-    - Join trader wins (from position_decrease) into the same daily market frame.
+Used for:          
+    - Join Open Interest events to market metadata (markets_data) to get market_name, long_token, short_token.    
+    - Join reconstructed OI state with reconstructed pool liquidity state on: day + chain + market.     
+    - Join trader wins (from position_decrease) into the same daily market frame.         
 
 ##### CTEs (to make logic readable + modular)
-Each metric is built step-by-step:
-    - params: stores dashboard inputs (shock size, start date).
-    - calendar: creates a daily date spine (so missing days don’t break charts).
-    - oi_ CTEs*: build daily OI per market and forward-fill.
-    - pool_ CTEs*: build daily pool liquidity and forward-fill.
-    - trader_ CTEs*: compute daily + rolling trader wins.
-    - final SELECT: calculates stress solvency + risk regime labels.
+Each metric is built step-by-step:         
+    - params: stores dashboard inputs (shock size, start date).       
+    - calendar: creates a daily date spine (so missing days don’t break charts).        
+    - oi_ CTEs*: build daily OI per market and forward-fill.       
+    - pool_ CTEs*: build daily pool liquidity and forward-fill.       
+    - trader_ CTEs*: compute daily + rolling trader wins.       
+    - final SELECT: calculates stress solvency + risk regime labels.       
 
 #### Window Functions (to “rebuild state” from events)
-Used mainly for forward-filling and rolling sums:
-    - LAST_VALUE(... IGNORE NULLS) OVER (...) → carries the latest known value forward to days with no events.
-    - SUM(...) OVER (ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) → computes 7-day rolling trader wins.
+Used mainly for forward-filling and rolling sums:        
+    - LAST_VALUE(... IGNORE NULLS) OVER (...) → carries the latest known value forward to days with no events.        
+    - SUM(...) OVER (ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) → computes 7-day rolling trader wins.          
 
-#### Filtering with WHERE (to keep queries fast + relevant)
-Used for:
-    - block_time >= start_ts → limits analysis to recent history (default 90 days).
-    - token filter in pool updates → only keeps long_token and short_token for each market.
+#### Filtering with WHERE (to keep queries fast + relevant)        
+Used for:               
+    - block_time >= start_ts → limits analysis to recent history (default 90 days).             
+    - token filter in pool updates → only keeps long_token and short_token for each market.              
 
-#### CASE WHEN logic (if-then-else rules)
-Used for:
-    - Chain naming normalization (avalanche_c → Avalanche)
-    - Safe division (NULLIF(...,0) to avoid divide-by-zero)
-    - Handling “no exposure” markets (OI = 0)
-    - Creating risk categories:
-        - High Risk (solvency < 1)
-        - Watchlist (solvency 1–3)
-        - Healthy (solvency > 3)
+#### CASE WHEN logic (if-then-else rules)         
+Used for:               
+    - Chain naming normalization (avalanche_c → Avalanche)             
+    - Safe division (NULLIF(...,0) to avoid divide-by-zero)                 
+    - Handling “no exposure” markets (OI = 0)             
+    - Creating risk categories:             
+        - High Risk (solvency < 1)              
+        - Watchlist (solvency 1–3)                 
+        - Healthy (solvency > 3)                      
 
 ### 📚 Research Influence
 Informed by GMX community research and DeFi risk discussions.
